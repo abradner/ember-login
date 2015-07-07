@@ -16,6 +16,30 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+
+    googleAppId: process.env.LOCAL_GOOGLE_APP_ID;
+    // googleApiKey: process.env.LOCAL_GOOGLE_API_KEY;
+    hostUrl: "http://"+process.env.LOCAL_HOST+":4200";
+
+    torii: {
+      providers: {
+        'google-oauth2': {
+          apiKey: ENV.googleAppId, // This should be App ID NOT apiKey
+          redirectUri: ENV.hostUrl,
+          accessType: 'offline',
+          scope: 'https://www.googleapis.com/auth/contacts.readonly email https://www.googleapis.com/auth/calendar profile'
+        }
+      }
+    },
+
+    'simple-auth-oauth2': {
+      // added to deal with google access code
+      serverInitialTokenEndpoint: ENV.apiUrl + '/' + ENV.API_NAMESPACE + '/tokens',
+
+      serverTokenEndpoint: 'oauth/token',
+      serverTokenRevocationEndpoint: 'oauth/revoke',
+      refreshAccessTokens: true
     }
   };
 
