@@ -18,9 +18,9 @@ module.exports = function(environment) {
       // when it is created
     },
 
-    googleAppId: process.env.LOCAL_GOOGLE_APP_ID;
+    googleAppId: process.env.LOCAL_GOOGLE_APP_ID,
     // googleApiKey: process.env.LOCAL_GOOGLE_API_KEY;
-    hostUrl: "http://"+process.env.LOCAL_HOST+":4200";
+    hostUrl: "http://"+process.env.LOCAL_HOST+":4200",
 
     torii: {
       providers: {
