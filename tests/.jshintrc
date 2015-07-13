@@ -47,6 +47,6 @@
   "strict": false,
   "white": false,
   "eqnull": true,
-  "esnext": false,
+  "esnext": true,
   "unused": true
 }
