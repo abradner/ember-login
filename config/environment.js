@@ -21,8 +21,13 @@ module.exports = function(environment) {
     googleAppId: process.env.LOCAL_GOOGLE_APP_ID,
     // googleApiKey: process.env.LOCAL_GOOGLE_API_KEY;
     hostUrl: "http://"+process.env.LOCAL_HOST+":4200",
+  };
 
-    torii: {
+ENV['simple-auth'] = {
+  authorizer: 'simple-auth-authorizer:oauth2-bearer'
+}
+
+    ENV['torii']= {
       providers: {
         'google-oauth2': {
           apiKey: ENV.googleAppId, // This should be App ID NOT apiKey
@@ -31,17 +36,16 @@ module.exports = function(environment) {
           scope: 'https://www.googleapis.com/auth/contacts.readonly email https://www.googleapis.com/auth/calendar profile'
         }
       }
-    },
+    };
 
-    'simple-auth-oauth2': {
+   ENV['simple-auth-oauth2'] = {
       // added to deal with google access code
       serverInitialTokenEndpoint: ENV.apiUrl + '/' + ENV.API_NAMESPACE + '/tokens',
 
       serverTokenEndpoint: 'oauth/token',
       serverTokenRevocationEndpoint: 'oauth/revoke',
       refreshAccessTokens: true
-    }
-  };
+    };
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
